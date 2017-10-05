@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define HORAMAX 24 
-
+#define NUMPISTAS 5
 typedef struct dados
 {
 	char empresa[60];
 	char cidade[50];
-	int numpass;
 	int horario;
-	int ativo;
+	short int modo;//ida  ou volta (0 é saida, 1 é chegada)
 	int pista;
+    int num_id;//o número do avião
 }dados;
 
 
@@ -23,7 +23,7 @@ typedef nodo* pistas;
 typedef nodo* listavoos;
 // falta definir o de árvore;
 
-
+void menu();
 void cria_voo(listavoos*,dados);
 void remove_voo(listavoos*,dados);
 void gerenciar_pistas(pistas*);
