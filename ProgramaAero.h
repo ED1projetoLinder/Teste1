@@ -5,7 +5,6 @@
 typedef struct dados
 {
 	char empresa[60];
-	char ident[5];
 	char cidade[50];
 	int numpass;
 	int horario;
