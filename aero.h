@@ -20,13 +20,14 @@ typedef struct nodo
 }nodo;
 
 typedef nodo* pistas;
-typedef nodo* listavoos;
+typedef nodo* lista_voos;
 // falta definir o de árvore;
 
+void salvarlista(lista_voos l,FILE *);
 void menu();
-void cria_voo(listavoos*,dados);
-void remove_voo(listavoos*,dados);
+void cria_voo(lista_voos*,FILE *);
+void remove_voo(lista_voos*,dados);
 void gerenciar_pistas(pistas*);
-void listar_ult_voos(listavoos);
-void listar_prox_voos(listavoos);
-void listar_tds_voos(listavoos);
+void listar_ult_voos(lista_voos);
+void listar_prox_voos(lista_voos);
+void listar_tds_voos(lista_voos);
