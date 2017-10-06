@@ -23,6 +23,7 @@ typedef nodo* pistas;
 typedef nodo* lista_voos;
 // falta definir o de árvore;
 
+void insere_fim(lista_voos *,dados inf);
 void salvarlista(lista_voos l,FILE *);
 void menu();
 void cria_voo(lista_voos*,FILE *);
