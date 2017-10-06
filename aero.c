@@ -1,6 +1,6 @@
 #include "aero.h"
 
-void salvarlista(listavoos l,FILE *arq)
+void salvarlista(lista_voos l,FILE *arq)
 {
 	
 	arq= fopen("listadevoos.dat","ab");
@@ -17,11 +17,11 @@ void salvarlista(listavoos l,FILE *arq)
 
 }
 
-void cria_voo(listavoos *l,FILE *arq)
+void cria_voo(lista_voos *l,FILE *arq)
 {
 	int horavoo=-1,cont;
 	nodo *novo;
-	listavoos aux=*l;
+	lista_voos aux=*l;
 	novo= malloc (sizeof (nodo));
 	if(!novo)
 	{
