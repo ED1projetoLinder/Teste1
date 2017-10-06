@@ -1,12 +1,26 @@
 #include "aero.h"
 
+
+void lerarquivo(lista_voos *l,FILE *arq)
+{
+	arq= fopen("listadevoos.dat","rb");
+	if(arq)
+	{
+		while(!feof(arq))
+		{
+			fread(&((*l)->inf),sizeof(dados),1,arq);
+			*l=(*l)->next;
+		}
+	}
+	fclose(arq);
+}
 void salvarlista(lista_voos l,FILE *arq)
 {
 	
 	arq= fopen("listadevoos.dat","ab");
 	if(arq)
 	{
-		while(l!=NULL)
+		while(!l)
 		{
 			fwrite(&(l->inf),sizeof(dados),1,arq);	
 			l=l->next;
@@ -48,7 +62,7 @@ void cria_voo(lista_voos *l,FILE *arq)
 	{
 		printf("\ntodas as pistas ja estao ocupadas");
 		system("PAUSE");
-		//menu();
+		//menu(); ta dando erro nessa linha
 	}
 	else
 	{
