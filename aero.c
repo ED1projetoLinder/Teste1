@@ -1,10 +1,28 @@
-void cria_voo(listavoos *l,dados inf)
+#include "aero.h"
+
+void salvarlista(listavoos l,FILE *arq)
+{
+	
+	arq= fopen("listadevoos.dat","ab");
+	if(arq)
+	{
+		while(l!=NULL)
+		{
+			fwrite(&(l->inf),sizeof(dados),1,arq);	
+			l=l->next;
+		}
+	}
+	
+	fclose(arq);
+
+}
+
+void cria_voo(listavoos *l,FILE *arq)
 {
 	int horavoo=-1,cont;
 	nodo *novo;
 	listavoos aux=*l;
 	novo= malloc (sizeof (nodo));
-	
 	if(!novo)
 	{
 		printf("falta de memoria\n");
@@ -56,8 +74,12 @@ void cria_voo(listavoos *l,dados inf)
 		printf("\ninsira numero de identificacao do aviao utilizado:      ");
 		scanf("%s",&novo->inf.num_id);
 		novo->inf.pista=cont+1;
-	}
-	
+		
+		salvarlista(*l,arq);
+		free(aux);
+	}	
 	
 	}
 }
+
+
