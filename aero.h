@@ -43,6 +43,8 @@ void cria_voo(lista_voos*,FILE *,ARV_BIN_ENC *);
 void remove_voo(lista_voos*,dados);
 dados busca_voo(ARV_BIN_ENC t);
 void gerenciar_pistas(pistas*);
+void listar_voos_empresas(lista_voos,char[]);
+void listar_voos_locais(lista_voos,char[]);
 void listar_ult_voos(lista_voos);
 void listar_prox_voos(lista_voos);
 void listar_tds_voos(lista_voos);
