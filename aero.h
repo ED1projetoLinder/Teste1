@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #define HORAMAX 24 
 #define NUMPISTAS 5
+
+
 typedef struct dados
 {
 	char empresa[60];
@@ -19,16 +21,29 @@ typedef struct nodo
 	struct nodo *next; 
 }nodo;
 
+typedef struct arv_nodo
+{
+	dados info;
+	struct node *left;
+	struct node *right;
+	struct node *father;
+}arv_nodo;
+
+
 typedef nodo* pistas;
 typedef nodo* lista_voos;
-// falta definir o de árvore;
+typedef arv_nodo* ARV_BIN_ENC;
 
+void maketree(ARV_BIN_ENC *,dados);
+void ins_ele(ARV_BIN_ENC*,dados);
 void insere_fim(lista_voos *,dados inf);
-void salvarlista(lista_voos l,FILE *);
-void menu();
-void cria_voo(lista_voos*,FILE *);
+void salvarlista(lista_voos ,FILE *);
+void lerarquivo(lista_voos *,FILE *);
+void cria_voo(lista_voos*,FILE *,ARV_BIN_ENC *);
 void remove_voo(lista_voos*,dados);
+dados busca_voo(ARV_BIN_ENC t);
 void gerenciar_pistas(pistas*);
 void listar_ult_voos(lista_voos);
 void listar_prox_voos(lista_voos);
 void listar_tds_voos(lista_voos);
+void menu();
