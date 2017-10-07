@@ -193,3 +193,46 @@ dados busca_voo(ARV_BIN_ENC t)
 	}	
 	
 }
+void listar_voos_empresas(lista_voos l,char empresa[60])
+{
+	while(!l)
+	{
+		if(l->inf.empresa==empresa)
+		{
+			printf("\n%s",l->inf.cidade);
+			printf("\n%s",l->inf.empresa);
+			printf("\n%d",l->inf.horario);
+			if(l->inf.modo==0)
+				printf("\nvoo de ida ");
+			else
+				printf("\nvoo de volta");
+				
+			printf("\n%d",l->inf.num_id);
+			printf("\n%d",l->inf.pista);		
+		}
+		l=l->next;
+	}
+	
+}
+
+void listar_voos_local(lista_voos l,char local[60])
+{
+	while(!l)
+	{
+		if(l->inf.cidade==local)
+		{
+			printf("\n%s",l->inf.cidade);
+			printf("\n%s",l->inf.empresa);
+			printf("\n%d",l->inf.horario);
+			if(l->inf.modo==0)
+				printf("\nvoo de ida ");
+			else
+				printf("\nvoo de volta");
+				
+			printf("\n%d",l->inf.num_id);
+			printf("\n%d",l->inf.pista);}
+		l=l->next;
+	}
+	
+}
+
