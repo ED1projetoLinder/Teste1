@@ -21,7 +21,7 @@ void ins_ele (ARV_BIN_ENC *arv, dados v)
 		maketree(arv, v);
 	else
 		if (v.horario<(*arv)->info.horario)
-			ins_ele(&((*arv)->left), v);
+			ins_ele(&(*arv)->left, v);
 		else
 			ins_ele(&((*arv)->right), v);
 }	
@@ -42,6 +42,12 @@ void insere_fim(lista_voos *l,dados valores)
 	aux->next=novo;
 	free(aux);
 }
+
+/*void inserir_espera(lista_voos *espera)
+{	
+	
+	
+}*/
 
 void lerarquivo(lista_voos *l,FILE *arq)
 {
@@ -76,7 +82,7 @@ void salvarlista(lista_voos l,FILE *arq)
 
 }
 
-void cria_voo(lista_voos *l,FILE *arq,ARV_BIN_ENC *t)
+void cria_voo(lista_voos *l,FILE *arq,ARV_BIN_ENC *t,lista_voos *espera,int num_id)
 {
 	int horavoo=-1,cont;
 	nodo *novo;
@@ -103,8 +109,14 @@ void cria_voo(lista_voos *l,FILE *arq,ARV_BIN_ENC *t)
 		
 	if(cont>=NUMPISTAS)//se cont for igual ou maior que o numero de pistas, não há pistas disponíveis
 	{
+		int resp;
+		
 		printf("\ntodas as pistas ja estao ocupadas");
 		system("PAUSE");
+		printf("deseja inserir na lista de espera de voos?(1 para sim,0 para não) ");
+		scanf("%d",&resp);
+		//if(resp==1)
+		//inserir_espera(&espera);		
 		//menu(); ta dando erro nessa linha
 	}
 	else
@@ -129,15 +141,17 @@ void cria_voo(lista_voos *l,FILE *arq,ARV_BIN_ENC *t)
 		scanf("%s",novo->inf.empresa);
 		novo->inf.horario=horavoo;
 		printf("\ninsira numero de identificacao do aviao utilizado:      ");
-		scanf("%d",&novo->inf.num_id);
+		scanf("%d",&novo->inf.num_id)
+		
 		novo->inf.pista=cont+1;
 		
-		salvarlista(*l,arq);
-		if(novo->inf.horario);
-		free(aux);
+		salvarlista(&l,arq);
+		ins_ele(t,novo->inf);
+		printf("\nVoo criado com sucesso!");
 	}	
 	
 	}
+	free(aux);
 }
 
 
@@ -193,9 +207,10 @@ dados busca_voo(ARV_BIN_ENC t)
 	}	
 	
 }
+
 void listar_voos_empresas(lista_voos l,char empresa[60])
 {
-	while(!l)
+	while(l)
 	{
 		if(l->inf.empresa==empresa)
 		{
@@ -208,7 +223,7 @@ void listar_voos_empresas(lista_voos l,char empresa[60])
 				printf("\nvoo de volta");
 				
 			printf("\n%d",l->inf.num_id);
-			printf("\n%d",l->inf.pista);		
+			printf("\n%d",l->inf.pista);	
 		}
 		l=l->next;
 	}
@@ -217,7 +232,7 @@ void listar_voos_empresas(lista_voos l,char empresa[60])
 
 void listar_voos_local(lista_voos l,char local[60])
 {
-	while(!l)
+	while(l)
 	{
 		if(l->inf.cidade==local)
 		{
@@ -230,9 +245,44 @@ void listar_voos_local(lista_voos l,char local[60])
 				printf("\nvoo de volta");
 				
 			printf("\n%d",l->inf.num_id);
-			printf("\n%d",l->inf.pista);}
+			printf("\n%d",l->inf.pista);
+		}
 		l=l->next;
 	}
 	
+}
+
+void listar_voos_inat(lista_voos inativos)
+{
+	while(inativos)
+	{
+		printf("\n%s",inativos->inf.cidade);
+			printf("\n%s",inativos->inf.empresa);
+			printf("\n%d",inativos->inf.horario);
+			if(inativos->inf.modo==0)
+				printf("\nvoo de ida ");
+			else
+				printf("\nvoo de volta");
+			printf("\n%d",inativos->inf.num_id);
+			printf("\n%d",inativos->inf.pista);
+			inativos=inativos->next;
+	}
+}
+
+void listar_voos_espera(lista_voos espera)
+{
+	while(espera)
+	{
+		printf("\n%s",espera->inf.cidade);
+			printf("\n%s",espera->inf.empresa);
+			printf("\n%d",espera->inf.horario);
+			if(espera->inf.modo==0)
+				printf("\nvoo de ida ");
+			else
+				printf("\nvoo de volta");
+			printf("\n%d",espera->inf.num_id);
+			printf("\n%d",espera->inf.pista);
+			espera=espera->next;
+	}
 }
 
