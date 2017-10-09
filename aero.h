@@ -18,7 +18,8 @@ typedef struct dados
 typedef struct nodo
 {
 	dados inf;
-	struct nodo *next; 
+	struct nodo *next;
+	struct nodo *ant;
 }nodo;
 
 typedef struct arv_nodo
@@ -39,13 +40,11 @@ void ins_ele(ARV_BIN_ENC*,dados);
 void insere_fim(lista_voos *,dados inf);
 void salvarlista(lista_voos ,FILE *);
 void lerarquivo(lista_voos *,FILE *);
-void cria_voo(lista_voos*,FILE *,ARV_BIN_ENC *);
+void cria_voo(lista_voos*,FILE *,ARV_BIN_ENC *,lista_voos*m,int);
 void remove_voo(lista_voos*,dados);
 dados busca_voo(ARV_BIN_ENC t);
 void gerenciar_pistas(pistas*);
 void listar_voos_empresas(lista_voos,char[]);
 void listar_voos_locais(lista_voos,char[]);
-void listar_ult_voos(lista_voos);
-void listar_prox_voos(lista_voos);
-void listar_tds_voos(lista_voos);
-void menu();
+void listar_voos_inat(lista_voos);
+void listar_voos_espera(lista_voos);
